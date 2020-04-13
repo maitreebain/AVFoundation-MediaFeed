@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		80069A062444EB5200DB3DBA /* URL+VideoPreviewThumbnail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80069A052444EB5200DB3DBA /* URL+VideoPreviewThumbnail.swift */; };
 		8022E05B2444C02C00DA39B7 /* MediaCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8022E05A2444C02C00DA39B7 /* MediaCell.swift */; };
 		8022E05D2444C06800DA39B7 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8022E05C2444C06800DA39B7 /* HeaderView.swift */; };
 		8022E05F2444C40000DA39B7 /* MediaObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8022E05E2444C40000DA39B7 /* MediaObject.swift */; };
@@ -19,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		80069A052444EB5200DB3DBA /* URL+VideoPreviewThumbnail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+VideoPreviewThumbnail.swift"; sourceTree = "<group>"; };
 		8022E05A2444C02C00DA39B7 /* MediaCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaCell.swift; sourceTree = "<group>"; };
 		8022E05C2444C06800DA39B7 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		8022E05E2444C40000DA39B7 /* MediaObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaObject.swift; sourceTree = "<group>"; };
@@ -66,6 +68,7 @@
 				80B0B9512444B99800A928E8 /* SceneDelegate.swift */,
 				80B0B9532444B99800A928E8 /* MediaFeedViewController.swift */,
 				8022E05E2444C40000DA39B7 /* MediaObject.swift */,
+				80069A052444EB5200DB3DBA /* URL+VideoPreviewThumbnail.swift */,
 				80B0B9552444B99800A928E8 /* Main.storyboard */,
 				80B0B9582444B99C00A928E8 /* Assets.xcassets */,
 				80B0B95A2444B99C00A928E8 /* LaunchScreen.storyboard */,
@@ -148,6 +151,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8022E05D2444C06800DA39B7 /* HeaderView.swift in Sources */,
+				80069A062444EB5200DB3DBA /* URL+VideoPreviewThumbnail.swift in Sources */,
 				8022E05F2444C40000DA39B7 /* MediaObject.swift in Sources */,
 				80B0B9542444B99800A928E8 /* MediaFeedViewController.swift in Sources */,
 				80B0B9502444B99800A928E8 /* AppDelegate.swift in Sources */,

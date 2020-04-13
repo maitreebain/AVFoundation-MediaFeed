@@ -10,4 +10,16 @@ import UIKit
 
 class MediaCell: UICollectionViewCell {
     
+    @IBOutlet weak var postView: UIImageView!
+    
+    func configureCell(for mediaObject: MediaObject) {
+        if let imageData = mediaObject.imageData {
+            postView.image = UIImage(data: imageData)
+        }
+        
+        if let videoURL = mediaObject.videoURL {
+            let image = videoURL.videoPreviewThumbnail()
+            postView.image = image
+        }
+    }
 }

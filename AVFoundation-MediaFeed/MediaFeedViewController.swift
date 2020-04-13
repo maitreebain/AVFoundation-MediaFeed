@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import AVFoundation
+import AVKit
 
 class MediaFeedViewController: UIViewController {
 
@@ -56,7 +58,12 @@ extension MediaFeedViewController: UICollectionViewDelegateFlowLayout, UICollect
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "mediaCell", for: indexPath)
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "mediaCell", for: indexPath) as? MediaCell else {
+            fatalError("could not downcast to MediaCell")
+        }
+        
+        let media = mediaObjects[indexPath.row]
+        cell.configureCell(for: media)
         
         return cell
     }
@@ -67,6 +74,17 @@ extension MediaFeedViewController: UICollectionViewDelegateFlowLayout, UICollect
         }
         
         return headerView
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let playerController = AVPlayerViewController()
+        let media = mediaObjects[indexPath.row]
+        guard let videoURL = media.videoURL else { return}
+        let player = AVPlayer(url: videoURL)
+        playerController.player = player
+        present(playerController, animated: true) {
+            player.play()
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -100,7 +118,10 @@ extension MediaFeedViewController: UIImagePickerControllerDelegate, UINavigation
                 mediaObjects.append(mediaObject)
             }
         case "public.movie":
-            break
+            if let mediaURL = info[UIImagePickerController.InfoKey.mediaURL] as? URL {
+                let mediaObject = MediaObject(imageData: nil, videoURL: mediaURL, caption: nil)
+                mediaObjects.append(mediaObject)
+            }
         default:
             print("unsupported media type")
         }
