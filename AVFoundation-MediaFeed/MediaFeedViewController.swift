@@ -42,11 +42,30 @@ class MediaFeedViewController: UIViewController {
     }
 
     @IBAction func videoButtonPressed(_ sender: UIBarButtonItem) {
+        imagePickerController.sourceType = .camera
+        present(imagePickerController, animated: true)
     }
     
     @IBAction func photoLibraryPressed(_ sender: UIBarButtonItem) {
         imagePickerController.sourceType = .photoLibrary
         present(imagePickerController, animated: true)
+    }
+    
+    private func playRandomVideo(in view: UIView){
+        let videoURLS = mediaObjects.compactMap{ $0.videoURL }
+        
+        if let videoURL = videoURLS.randomElement() {
+            let player = AVPlayer(url: videoURL)
+            let playerLayer = AVPlayerLayer(player: player)
+            playerLayer.frame = view.bounds
+            playerLayer.videoGravity = .resizeAspect
+            
+            view.layer.sublayers?.removeAll()
+            
+            view.layer.addSublayer(playerLayer)
+            player.play()
+        }
+    
     }
     
 }
@@ -72,7 +91,7 @@ extension MediaFeedViewController: UICollectionViewDelegateFlowLayout, UICollect
         guard let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "headerView", for: indexPath) as? HeaderView else {
             fatalError("could not dequeue a HeaderView")
         }
-        
+        playRandomVideo(in: headerView)
         return headerView
     }
     
@@ -94,10 +113,10 @@ extension MediaFeedViewController: UICollectionViewDelegateFlowLayout, UICollect
         return CGSize(width: itemWidth, height: itemHeight)
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
-    }
-    
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+//        return UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
+//    }
+//
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         
         return CGSize(width: collectionView.bounds.width, height: collectionView.bounds.height * 0.4)
