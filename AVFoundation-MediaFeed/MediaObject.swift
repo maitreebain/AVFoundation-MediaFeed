@@ -9,7 +9,7 @@
 import Foundation
 
 //mediaObject instance can be video or image content
-struct MediaObject {
+struct MediaObject: Codable {
     let imageData: Data?
     let videoURL: URL?
     let caption: String?
